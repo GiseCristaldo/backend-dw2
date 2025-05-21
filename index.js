@@ -1,13 +1,14 @@
-
-// index.js (en la raíz del proyecto) - Versión Actualizada
 import express from 'express';
-// Importamos sequelize y los modelos
-import { sequelize } from './src/models/index.js';
+import { sequelize } from './src/models/index.js'; // Importamos sequelize y los modelos
 
 // --- AQUÍ IRÍAN TUS RUTAS API ---
 
-// 📦 Importa rutas (¡agregá esta línea!)
 import camioneros from './src/routes/camioneros.routes.js';
+import camion from './src/routes/camiones.routes.js';
+import camionCamionero from './src/routes/camionCamionero.routes.js';
+import paquetes from './src/routes/paquetes.routes.js';
+import provincias from './src/routes/provincias.routes.js';
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,6 +17,10 @@ app.use(express.json()); // parseamos el cuerpo a JSON
 
 // ✅ Usa las rutas
 app.use('/api/camioneros', camioneros);
+app.use('/api/camiones', camion);
+app.use('/api/camion-camionero', camionCamionero);
+app.use('/api/paquetes', paquetes);
+app.use('/api/provincias', provincias);
 
 // Iniciar servidor y sincronizar DB
 async function startServer() {
